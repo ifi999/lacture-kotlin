@@ -13,7 +13,7 @@ object JsonUtil {
         return json.encodeToString(serializer, v)
     }
 
-    fun <T> decodeToJson(v: String, serializer: KSerializer<T>) : T {
+    fun <T> decodeFromJson(v: String, serializer: KSerializer<T>) : T {
         return json.decodeFromString(serializer, v)
     }
 }
