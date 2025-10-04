@@ -23,7 +23,7 @@ class GoogleAuthService(
 
     private val oAuthInfo = config.providers[key] ?: throw CustomException(ErrorCode.AUTH_CONFIG_NOT_FOUND, key)
     private val tokenURl = "https://oauth2.googleapis.com/token"
-    private val userInfoURL = "https://oauth2.googleapis.com/oauth2/v2/userinfo"
+    private val userInfoURL = "https://www.googleapis.com/oauth2/v2/userinfo"
 
     override val providerName: String = key
 
