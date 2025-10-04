@@ -45,7 +45,15 @@ class GoogleAuthService(
     }
 
     override fun getUserIfo(accessToken: String): OAuth2UserResponse {
-        TODO("Not yet implemented")
+        val headers = mapOf(
+            "Content-type" to "application/json",
+            "Authorization" to "Bearer $accessToken"
+        )
+
+        val jsonString = httpClient.GET(userInfoURL, headers)
+        val response : GoogleUserResponse= JsonUtil.decodeFromJson(jsonString, GoogleUserResponse.serializer())
+
+        return response
     }
 
 }
