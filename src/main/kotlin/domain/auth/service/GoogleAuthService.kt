@@ -44,7 +44,7 @@ class GoogleAuthService(
         return response
     }
 
-    override fun getUserIfo(accessToken: String): OAuth2UserResponse {
+    override fun getUserInfo(accessToken: String): OAuth2UserResponse {
         val headers = mapOf(
             "Content-type" to "application/json",
             "Authorization" to "Bearer $accessToken"

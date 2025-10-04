@@ -4,7 +4,7 @@ interface OAuthServiceInterface {
 
     val providerName : String
     fun getToken(code : String) : OAuth2TokenResponse
-    fun getUserIfo(accessToken : String) : OAuth2UserResponse
+    fun getUserInfo(accessToken : String) : OAuth2UserResponse
 
 }
 
