@@ -1,9 +1,12 @@
 package org.example.domain.auth.service
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import okhttp3.FormBody
 import org.example.common.exception.CustomException
 import org.example.common.exception.ErrorCode
 import org.example.common.httpClient.CallClient
+import org.example.common.json.JsonUtil
 import org.example.config.Oauth2Config
 import org.example.interfaces.OAuth2TokenResponse
 import org.example.interfaces.OAuth2UserResponse
@@ -36,9 +39,9 @@ class GoogleAuthService(
         val headers = mapOf("Accept" to "application/json")
         val jsonString = httpClient.POST(tokenURl, headers, body)
 
-        // jsoonString -> json 처리
+        val response  : GoogleTokenResponse = JsonUtil.decodeFromJson(jsonString, GoogleTokenResponse.serializer())
 
-        TODO("Not yet implemented")
+        return response
     }
 
     override fun getUserIfo(accessToken: String): OAuth2UserResponse {
@@ -46,3 +49,15 @@ class GoogleAuthService(
     }
 
 }
+
+@Serializable
+data class GoogleTokenResponse (
+    @SerialName("access_token") override val accessToken: String,
+) : OAuth2TokenResponse
+
+@Serializable
+data class GoogleUserResponse (
+    override val id: String,
+    override val email: String?,
+    override val name: String?,
+) : OAuth2UserResponse
