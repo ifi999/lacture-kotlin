@@ -1,0 +1,25 @@
+jwt:
+  secret-key : "lecture"
+  time : 30
+
+
+oauth2:
+  providers:
+    google:
+      client-id :
+      client-secret :
+      redirect-uri :
+    github:
+      client-id:
+      client-secret:
+      redirect-uri:
+
+database:
+  mysql:
+    url : jdbc:mysql://localhost:3306/bank?useSSL=false&serverTimezone=UTC
+    username : root
+    password : 1q2w3e4r!
+    driver-class-name : com.mysql.cj.jdbc.Driver
+
+server:
+  port: 9090
