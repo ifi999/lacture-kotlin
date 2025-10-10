@@ -10,20 +10,18 @@ interface Runner {
 
 @Component
 class Transactional (
-    private val advice : Runner = Advice()
+    private val advice : Runner
 ) {
-
     fun <T> run(function : () -> T?) : T? = advice.run(function)
 
     fun <T> readOnly(function : () -> T?) : T? = advice.readOnly(function)
+}
 
-    @Component
-    private class Advice : Runner {
-        @Transactional
-        override fun <T> run(function: () -> T?): T? = function()
+@Component
+class TransactionalAdvice : Runner {
+    @Transactional
+    override fun <T> run(function : () -> T?) : T? = function()
 
-        @Transactional
-        override fun <T> readOnly(function: () -> T?): T? = function()
-    }
-
+    @Transactional(readOnly = true)
+    override fun <T> readOnly(function : () -> T?) : T? = function()
 }
